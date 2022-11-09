@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "steoates.autoimport",
+    "jpoissonnier.vscode-styled-components",
+    "stylelint.vscode-stylelint"
+  ]
+}

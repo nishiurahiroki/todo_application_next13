@@ -1,0 +1,6 @@
+src/lib/firebase-service-account.json
+
+.next
+node_modules
+.git
+.env
