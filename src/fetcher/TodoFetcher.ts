@@ -1,11 +1,13 @@
 import { db } from '../lib/firebaseClient';
+import { Todo } from '../types/Todo';
 
-export const fetchTodoList = async () => {
-  const col = db.collection('todos');
-  const doc = await col.get();
+type FetchTodoProps = {
+  key : string;
+}
 
-  return doc.docs.map((todo) => ({
-    id: todo.id,
-    todos: todo.data().list,
-  }));
+export const fetchTodoList : (props : FetchTodoProps) => Promise<Todo[]>  = async (props) => {
+  const ref = db.collection('todos').doc(props.key)
+  const snapshot = await ref.get()
+  const doc = snapshot.data()
+  return doc ? doc.list : []
 };
