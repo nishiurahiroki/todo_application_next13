@@ -1,5 +1,7 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
+
 import { Todo } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
 
@@ -8,15 +10,24 @@ type Props = {
 }
 
 export const TodoList = (props : Props) => {
-  const [searchWord, setSearchWord] = useState('')
+  const router = useRouter()
+
+  const [searchTitle, setSearchTitle] = useState('')
 
   const handleInput = (e : ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value)
-  } 
+    setSearchTitle(e.target.value)
+  }
+
+  const handleClickSearch = () => {
+    router.push(`/list?searchTitle=${searchTitle}`)
+  }
 
   return (
     <div>
-      <div>Search : <input type="text" value={searchWord} onChange={handleInput} /></div>
+      <div>
+        Search : <input type="text" value={searchTitle} onChange={handleInput} />
+        <button onClick={handleClickSearch}>search</button>
+      </div>
       <div>
         {props.todos.map((todo : Todo, index) => (
           <div key={index}>
