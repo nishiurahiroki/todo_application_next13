@@ -1,25 +1,22 @@
 'use client'
 
+import { FieldValues, useForm } from 'react-hook-form';
+
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
 
 export const TodoSearchForm = () => {
+  const { register, handleSubmit } = useForm();
+
   const router = useRouter()
 
-  const [searchTitle, setSearchTitle] = useState('')
-
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTitle(e.target.value)
-  }
-
-  const handleClickSearch = () => {
-    router.push(`/list?searchTitle=${searchTitle}`)
+  const onSubmit = (data: FieldValues) => {
+    router.push(`/list?searchTitle=${data.searchTitle}`)
   }
 
   return (
-    <div>
-      Search : <input type="text" value={searchTitle} onChange={handleInput} />
-      <button onClick={handleClickSearch}>search</button>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      Search : <input type="text" {...register('searchTitle')} />
+      <button type="submit">search</button>
+    </form>
   )
 }
