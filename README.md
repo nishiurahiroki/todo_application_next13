@@ -1,6 +1,8 @@
-## Required.
+## Start
+```
+# Start database.
+docker-compose up -d
 
-```sh
-# firebase service account json.
-./src/lib/firebase-service-account.json
+# Start Next app.
+yarn dev
 ```

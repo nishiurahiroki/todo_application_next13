@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+
+  mysql:
+    image: mysql:8.0.31
+    environment: 
+      MYSQL_ROOT_PASSWORD: todo1234
+      MYSQL_DATABASE: todos
+    ports:
+      - 3306:3306

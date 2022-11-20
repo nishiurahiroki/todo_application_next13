@@ -1,3 +1,4 @@
+import { TodoList } from "../../components/TodoList";
 import { fetchTodoList } from "../../fetcher/TodoFetcher";
 
 export default async function ListPage() {
@@ -7,11 +8,7 @@ export default async function ListPage() {
     <div>
       <div>一覧</div>
       <div>
-        {todos?.map((todo : any) => (
-          <>
-            <>{todo.name}</>
-          </>
-        ))}
+        <TodoList todos={todos} />
       </div>
     </div>
   );

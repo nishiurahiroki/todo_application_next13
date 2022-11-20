@@ -1,13 +1,12 @@
-import { db } from '../lib/firebaseClient';
-import { Todo } from '../types/Todo';
+import { PrismaClient, Todo } from '@prisma/client'
+const prisma = new PrismaClient()
 
 type FetchTodoProps = {
   key : string;
+  searchWord? : string;
 }
 
-export const fetchTodoList : (props : FetchTodoProps) => Promise<Todo[]>  = async (props) => {
-  const ref = db.collection('todos').doc(props.key)
-  const snapshot = await ref.get()
-  const doc = snapshot.data()
-  return doc ? doc.list : []
+export const fetchTodoList = async (props : FetchTodoProps) => {
+  const todos : Todo[] = await prisma.todo.findMany()
+  return todos
 };
