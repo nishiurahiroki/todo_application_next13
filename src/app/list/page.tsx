@@ -2,15 +2,14 @@ import { TodoList } from "../../components/TodoList";
 import { fetchTodoList } from "../../fetcher/TodoFetcher";
 
 type ListPageProps = {
-  searchParams : { searchTitle? : string }
+  searchParams: { searchTitle?: string }
 }
 
-export default async function ListPage(props : ListPageProps) {
-  const todos = await fetchTodoList({ searchWord : props.searchParams?.searchTitle });
+export default async function ListPage(props: ListPageProps) {
+  const todos = await fetchTodoList({ searchWord: props.searchParams?.searchTitle });
 
   return (
     <div>
-      <div>一覧</div>
       <div>
         <TodoList todos={todos} />
       </div>
