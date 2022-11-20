@@ -11,7 +11,7 @@ export const fetchTodoList = async (props? : FetchTodoProps) => {
   const searchCondition = props?.searchWord ? {
     where : {
       title : {
-        in : props?.searchWord
+        contains : props?.searchWord
       }
     }
   } : undefined
