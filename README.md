@@ -3,7 +3,7 @@
 ```
 yarn
 
-cp .env.local
+cp .env.local .env
 ```
 
 ## Start
