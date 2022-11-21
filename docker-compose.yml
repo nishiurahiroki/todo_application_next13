@@ -1,10 +1,9 @@
-version: "2"
+version: '2'
 
 services:
-
-  mysql:
+  db:
     image: mysql:8.0.31
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: todo1234
       MYSQL_DATABASE: todos
     ports:
