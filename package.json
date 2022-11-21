@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "npx prisma migrate dev --name init"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
