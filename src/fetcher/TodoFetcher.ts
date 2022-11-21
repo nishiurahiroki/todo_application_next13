@@ -1,21 +1,23 @@
-'server only'
+'server only';
 
-import { PrismaClient, Todo } from '@prisma/client'
-const prisma = new PrismaClient()
+import { PrismaClient, Todo } from '@prisma/client';
+const prisma = new PrismaClient();
 
 type FetchTodoProps = {
-  searchWord? : string;
-}
+  searchWord?: string;
+};
 
-export const fetchTodoList = async (props? : FetchTodoProps) => {
-  const searchCondition = props?.searchWord ? {
-    where : {
-      title : {
-        contains : props?.searchWord
+export const fetchTodoList = async (props?: FetchTodoProps) => {
+  const searchCondition = props?.searchWord
+    ? {
+        where: {
+          title: {
+            contains: props?.searchWord,
+          },
+        },
       }
-    }
-  } : undefined
+    : undefined;
 
-  const todos : Todo[] = await prisma.todo.findMany(searchCondition)
-  return todos
+  const todos: Todo[] = await prisma.todo.findMany(searchCondition);
+  return todos;
 };

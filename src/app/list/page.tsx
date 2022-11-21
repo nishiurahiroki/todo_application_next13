@@ -1,17 +1,18 @@
-import { TodoList } from "../../components/TodoList";
-import { fetchTodoList } from "../../fetcher/TodoFetcher";
+import { Suspense } from 'react';
+import { TodoList } from '../../components/TodoList';
 
 type ListPageProps = {
-  searchParams: { searchTitle?: string }
-}
+  searchParams: { searchTitle?: string };
+};
 
 export default async function ListPage(props: ListPageProps) {
-  const todos = await fetchTodoList({ searchWord: props.searchParams?.searchTitle });
-
   return (
     <div>
       <div>
-        <TodoList todos={todos} />
+        <Suspense fallback={<>loading...</>}>
+          {/* @ts-expect-error Server Component */}
+          <TodoList todoTitle={props.searchParams.searchTitle} />
+        </Suspense>
       </div>
     </div>
   );

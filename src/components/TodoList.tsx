@@ -1,17 +1,20 @@
-import { Todo } from "@prisma/client";
+import { Todo } from '@prisma/client';
+import { fetchTodoList } from '../fetcher/TodoFetcher';
 
 type Props = {
-  todos: Todo[];
-}
+  todoTitle?: string;
+};
 
-export const TodoList = (props: Props) => {
+export const TodoList = async (props: Props) => {
+  const todos: Todo[] = await fetchTodoList({ searchWord: props.todoTitle });
+
   return (
     <div>
-      {props.todos.map((todo: Todo, index) => (
+      {todos.map((todo: Todo, index) => (
         <div key={index}>
           <p>{todo.title}</p>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};

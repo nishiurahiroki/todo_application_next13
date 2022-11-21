@@ -3,3 +3,4 @@ node_modules
 .git
 .env
 yarn-error.log
+.env.production
