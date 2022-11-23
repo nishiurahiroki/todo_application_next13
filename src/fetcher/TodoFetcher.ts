@@ -22,3 +22,13 @@ export const fetchTodoList = async (props?: FetchTodoProps) => {
   const todos: Todo[] = await db.todo.findMany(searchCondition);
   return todos;
 };
+
+export const fetchTodoFindById = async (id: number) => {
+  const todo: Todo | null = await db.todo.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  return todo;
+};

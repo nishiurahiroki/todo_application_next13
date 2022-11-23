@@ -1,4 +1,5 @@
 import { Todo } from '@prisma/client';
+import Link from 'next/link';
 import { fetchTodoList } from '../fetcher/TodoFetcher';
 
 type Props = {
@@ -11,9 +12,11 @@ export const TodoList = async (props: Props) => {
   return (
     <div>
       {todos.map((todo: Todo, index) => (
-        <div key={index}>
-          <p>{todo.title}</p>
-        </div>
+        <Link href={`/update/${todo.id}`}>
+          <div key={index}>
+            <p>{todo.title}</p>
+          </div>
+        </Link>
       ))}
     </div>
   );
