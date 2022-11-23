@@ -12,8 +12,8 @@ export const TodoList = async (props: Props) => {
   return (
     <div>
       {todos.map((todo: Todo, index) => (
-        <Link href={`/update/${todo.id}`}>
-          <div key={index}>
+        <Link href={`/update/${todo.id}`} key={index}>
+          <div>
             <p>{todo.title}</p>
           </div>
         </Link>
