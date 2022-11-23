@@ -8,12 +8,10 @@ type ListPageProps = {
 export default async function ListPage(props: ListPageProps) {
   return (
     <div>
-      <div>
-        <Suspense fallback={<>loading...</>}>
-          {/* @ts-expect-error Server Component */}
-          <TodoList todoTitle={props.searchParams.searchTitle} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<>loading...</>}>
+        {/* @ts-expect-error Server Component */}
+        <TodoList todoTitle={props.searchParams.searchTitle} />
+      </Suspense>
     </div>
   );
 }
