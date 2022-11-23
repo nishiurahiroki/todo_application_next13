@@ -1,12 +1,31 @@
 'use client';
 
 import { FieldValues, useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 
-export const TodoForm = () => {
-  const { register, handleSubmit } = useForm();
+type Props = {
+  title: string;
+  description: string;
+  onSubmit: (todo: InputTodo) => void;
+};
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+export type InputTodo = {
+  title: string;
+  description: string;
+};
+
+export const TodoForm = (props: Props) => {
+  const { register, handleSubmit } = useForm<InputTodo>({
+    defaultValues: {
+      title: props.title,
+      description: props.description,
+    },
+  });
+
+  const onSubmit = (data: FieldValues) =>
+    props.onSubmit({
+      title: data.title,
+      description: data.description,
+    });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

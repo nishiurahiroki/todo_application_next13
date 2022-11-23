@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { TodoForm } from './TodoForm';
 
@@ -11,11 +12,18 @@ export default {
   },
 } as ComponentMeta<typeof TodoForm>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof TodoForm> = (args) => <TodoForm />;
+const Template: ComponentStory<typeof TodoForm> = (args) => (
+  <TodoForm {...args} />
+);
 
-export const Default = Template.bind({});
-Default.args = {
-  primary: false,
-  label: 'TodoForm',
+export const Create = Template.bind({});
+Create.args = {
+  onSubmit: action('submit'),
+};
+
+export const Update = Template.bind({});
+Update.args = {
+  title: 'Update title',
+  description: 'Update description',
+  onSubmit: action('submit'),
 };
