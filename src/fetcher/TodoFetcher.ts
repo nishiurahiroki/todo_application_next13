@@ -1,7 +1,8 @@
 'server only';
 
-import { PrismaClient, Todo } from '@prisma/client';
-const prisma = new PrismaClient();
+import { db } from '../lib/db';
+
+import { Todo } from '@prisma/client';
 
 type FetchTodoProps = {
   searchWord?: string;
@@ -18,6 +19,6 @@ export const fetchTodoList = async (props?: FetchTodoProps) => {
       }
     : undefined;
 
-  const todos: Todo[] = await prisma.todo.findMany(searchCondition);
+  const todos: Todo[] = await db.todo.findMany(searchCondition);
   return todos;
 };
