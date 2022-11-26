@@ -10,12 +10,12 @@ export const TodoSearchForm = () => {
   const router = useRouter();
 
   const onSubmit = (data: FieldValues) => {
-    router.push(`/list?searchTitle=${data.searchTitle}`);
+    router.push(`/list?searchWord=${data.title}`);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      Search : <input type="text" {...register('searchTitle')} />
+      Search : <input type="text" {...register('title')} />
       <button type="submit">search</button>
     </form>
   );

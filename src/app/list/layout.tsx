@@ -1,5 +1,3 @@
-'use client';
-
 import { TodoSearchForm } from '../../components/TodoSearchForm';
 
 export default function RootLayout({

@@ -3,8 +3,15 @@ import * as z from 'zod';
 
 import { db } from '../../../lib/db';
 
-const todoUpdateSchema = z.object({
-  id: z.number(),
+const todoDeleteSchema = z.object({
+  id: z
+    .string()
+    .refine((v) => {
+      return !isNaN(Number(v));
+    }, 'error message')
+    .transform((v) => {
+      return Number(v);
+    }),
 });
 
 export default async function handler(
@@ -13,7 +20,8 @@ export default async function handler(
 ) {
   if (req.method === 'DELETE') {
     try {
-      const body = todoUpdateSchema.parse(JSON.parse(req.body));
+      const body = todoDeleteSchema.parse(JSON.parse(req.body));
+
       const todo = await db.todo.delete({
         where: {
           id: body.id,
