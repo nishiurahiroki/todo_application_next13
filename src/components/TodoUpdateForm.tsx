@@ -21,6 +21,7 @@ export default function TodoUpdateForm({ todo }: Props) {
   const handleSubmit = async (data: InputTodo) => {
     await update({ ...data, id: todo.id });
     router.push('/list');
+    router.refresh();
   };
 
   return (

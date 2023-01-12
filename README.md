@@ -6,7 +6,7 @@ yarn
 cp .env.local .env
 ```
 
-## Start
+## Start dev.
 
 ```
 # Start database.

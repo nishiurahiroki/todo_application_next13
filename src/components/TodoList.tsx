@@ -12,14 +12,12 @@ export const TodoList = async (props: Props) => {
   const todos: Todo[] = await fetchTodoList(props.searchCondition);
 
   return (
-    <div>
+    <>
       {todos.map((todo: Todo, index) => (
         <Link href={`/detail/${todo.id}`} key={index}>
-          <div>
-            <p>{todo.title}</p>
-          </div>
+          <p>{todo.title}</p>
         </Link>
       ))}
-    </div>
+    </>
   );
 };

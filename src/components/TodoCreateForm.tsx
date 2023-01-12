@@ -16,6 +16,7 @@ export const TodoCreateForm = () => {
   const handleSubmit = async (data: InputTodo) => {
     await create(data);
     router.push('/list');
+    router.refresh();
   };
 
   return <TodoForm onSubmit={handleSubmit} />;

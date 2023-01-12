@@ -23,6 +23,7 @@ export const TodoDetailActions = (props: Props) => {
   const handleDelete = async () => {
     await del(props.id);
     router.push('/list');
+    router.refresh();
   };
 
   return (
